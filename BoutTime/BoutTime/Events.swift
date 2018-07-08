@@ -17,12 +17,12 @@ struct Event {
     var fourth: String
     }
 
-var event1: Event = Event(first: "This is the first event occured #1", second: "This is the second event occured", third: "This is the third event occured #3", fourth: "This is the fourth event occured #4")
-var event2: Event = Event(first: "This is the first event occured #1", second: "This is the second event occured", third: "This is the third event occured #3", fourth: "This is the fourth event occured #4")
-var event3: Event = Event(first: "This is the first event occured #1", second: "This is the second event occured", third: "This is the third event occured #3", fourth: "This is the fourth event occured #4")
-var event4: Event = Event(first: "This is the first event occured #1", second: "This is the second event occured", third: "This is the third event occured #3", fourth: "This is the fourth event occured #4")
-var event5: Event = Event(first: "This is the first event occured #1", second: "This is the second event occured", third: "This is the third event occured #3", fourth: "This is the fourth event occured #4")
-var event6: Event = Event(first: "This is the first event occured #1", second: "This is the second event occured", third: "This is the third event occured #3", fourth: "This is the fourth event occured #4")
+var event1: Event = Event(first: "Video game console invented by  Ralph H. Baer", second: "The moon landing - Neil Armstrong sets foot on the moon", third: "E-mail invented by  Ray Tomlinson", fourth: "Liquid Crystal Display invented by James Fergason")
+var event2: Event = Event(first: "H.W Bush", second: "Clinton", third: "Bush", fourth: "Obama")
+var event3: Event = Event(first: "Personal computer invented by Xerox PARC", second: "Camcorder invented by  Sony", third: "World Wide Web invented by  Tim Berners-Lee", fourth: "Digital satellite radio")
+var event4: Event = Event(first: "Lord Mountbatten resigned as the Governor General of India", second: "India becomes a republic", third: "TBattle of Garibpur: Indian troops defeated Pakistan army", fourth: "India became 6th nation to explode an atomic bomb")
+var event5: Event = Event(first: "Delhi court decriminalizes gay sex", second: "India wins cricket world cup after 28 years", third: "India becomes a member of Missile Technology Control Regime.", fourth: "he Goods and Services Tax (GST) launched, the biggest tax reform in history of India.")
+var event6: Event = Event(first: "This is the first event occured #1", second: "This is the second event occured", third: "This is the third event occured #3", fourth: "")
 
 
 

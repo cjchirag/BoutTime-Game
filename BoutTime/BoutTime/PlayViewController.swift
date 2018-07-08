@@ -13,7 +13,9 @@ import GameKit
 class PlayViewController: UIViewController {
     var currentEvent: Event?
     let gameManager = GameManager()
+    @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var firstEvent: UILabel!
+    @IBOutlet weak var infoImage: UIImageView!
     @IBOutlet weak var secondEvent: UILabel!
     @IBOutlet weak var thirdEvent: UILabel!
     @IBOutlet weak var fourthEvent: UILabel!
@@ -22,9 +24,15 @@ class PlayViewController: UIViewController {
     override func viewDidLoad() {
         self.becomeFirstResponder()
         loadQuestion()
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 255, alpha: 1)
     }
     
     func loadQuestion() {
+        runTimer()
+        infoImage.isHidden = true
+        infoLabel.isHidden = false
+        infoLabel.text = "Shake to complete"
+        timerLabel.isHidden = false
         let theEvent = gameManager.quiz.eventsGenerator()
         currentEvent = theEvent
         
@@ -41,7 +49,7 @@ class PlayViewController: UIViewController {
         secondEvent.text = theEvents[1]
         thirdEvent.text = theEvents[2]
         fourthEvent.text = theEvents[3]
-        runTimer()
+        
     }
     
     @IBAction func oneToTwo(_ sender: Any) {
@@ -91,6 +99,8 @@ class PlayViewController: UIViewController {
         
         if gameManager.score < gameManager.quizRound {
             // FIXME: display for score load.
+        } else {
+            
         }
     }
     func nextRound() {
@@ -112,7 +122,7 @@ class PlayViewController: UIViewController {
         }
     }
     
-    var seconds = 60
+    var seconds = 5
     var timer = Timer()
     var isTimerRunning = false
     
@@ -127,16 +137,20 @@ class PlayViewController: UIViewController {
                 do {
                     let checkAnswer = try gameManager.checkFor(theEvent: currentQs, first: firstEvent.text!, second: secondEvent.text!, third: thirdEvent.text!, fourth: fourthEvent.text!)
                     if checkAnswer {
-                        // FIXME: Labels
+                        infoImage.image = UIImage(named: "next_round_success")
+                        timerLabel.isHidden = true
                         timer.invalidate()
-                        seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
-                        timerLabel.text = "\(seconds)"
-                        loadNextRound(delay: 2)
+                        seconds = 5    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
+                        infoLabel.text = "Tap events to learn more"
+                        loadNextRound(delay: 1)
                     } else {
+                        infoImage.image = UIImage(named: "next_round_fail")
+                        timerLabel.isHidden = true
                         timer.invalidate()
-                        seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
+                        infoLabel.text = "Tap events to learn more"
+                        seconds = 5    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
                         timerLabel.text = "\(seconds)"
-                        loadNextRound(delay: 2)
+                        loadNextRound(delay: 1)
                     }
                 }
                 catch {}
@@ -152,27 +166,22 @@ class PlayViewController: UIViewController {
         let checkAnswer = try gameManager.checkFor(theEvent: currentQs, first: firstEvent.text!, second: secondEvent.text!, third: thirdEvent.text!, fourth: fourthEvent.text!)
             if checkAnswer {
                 // FIXME: check answer labels
+                infoImage.image = UIImage(named: "next_round_success")
+                timerLabel.isHidden = true
+                infoLabel.text = "Tap events to know more"
             } else {
-                
+                infoImage.image = UIImage(named: "next_round_fail")
+                timerLabel.isHidden = true
+                infoLabel.text = "Tap events to know more"
             }
         } catch {
             
         }
         timer.invalidate()
-        seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
+        seconds = 5    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
         timerLabel.text = "\(seconds)"
         loadNextRound(delay: 2)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
 
