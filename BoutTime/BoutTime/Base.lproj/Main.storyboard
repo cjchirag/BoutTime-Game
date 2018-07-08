@@ -47,26 +47,41 @@
                                 <rect key="frame" x="292" y="172" width="38" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="2 to 1"/>
+                                <connections>
+                                    <action selector="twoToOne:" destination="mEZ-aU-U9L" eventType="touchUpInside" id="OKt-GH-4Yd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SIS-di-2Bu">
                                 <rect key="frame" x="292" y="201" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="2 to 3"/>
+                                <connections>
+                                    <action selector="twoToThree:" destination="mEZ-aU-U9L" eventType="touchUpInside" id="1b4-gq-ATg"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nve-vz-KEG">
                                 <rect key="frame" x="293" y="283" width="40" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="3 to 2"/>
+                                <connections>
+                                    <action selector="threeToTwo:" destination="mEZ-aU-U9L" eventType="touchUpInside" id="yx5-7h-MYI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COf-YE-1Je">
                                 <rect key="frame" x="293" y="314" width="41" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="3 to 4"/>
+                                <connections>
+                                    <action selector="threeToFour:" destination="mEZ-aU-U9L" eventType="touchUpInside" id="BBF-Fz-CJI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H10-ev-hBF">
                                 <rect key="frame" x="291" y="419" width="41" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="4 to 3"/>
+                                <connections>
+                                    <action selector="fourToThree:" destination="mEZ-aU-U9L" eventType="touchUpInside" id="3IB-uG-pnS"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Second" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AmG-NB-QV6">
                                 <rect key="frame" x="16" y="163" width="246" height="88"/>
@@ -79,6 +94,9 @@
                                 <rect key="frame" x="259" y="36" width="104" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="1 to 2" image="down_full"/>
+                                <connections>
+                                    <action selector="oneToTwo:" destination="mEZ-aU-U9L" eventType="touchUpInside" id="yfm-9E-jDg"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Third" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhb-3r-9LF">
                                 <rect key="frame" x="16" y="269" width="260" height="88"/>
@@ -101,6 +119,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 : 00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9V-CO-5AZ">
+                                <rect key="frame" x="166" y="547" width="45" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shake to complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aeB-Tn-eYx">
+                                <rect key="frame" x="116" y="588" width="143" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="VfG-Ba-RUf"/>
@@ -110,6 +142,7 @@
                         <outlet property="fourthEvent" destination="Pow-PB-We8" id="00F-td-dRz"/>
                         <outlet property="secondEvent" destination="AmG-NB-QV6" id="pco-Zn-TVs"/>
                         <outlet property="thirdEvent" destination="nhb-3r-9LF" id="iq4-rz-hZs"/>
+                        <outlet property="timerLabel" destination="m9V-CO-5AZ" id="35S-0o-Rva"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TMr-g8-QY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
