@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import GameKit
 
 class PlayViewController: UIViewController {
     var currentEvent: Event?
@@ -26,11 +27,20 @@ class PlayViewController: UIViewController {
     func loadQuestion() {
         let theEvent = gameManager.quiz.eventsGenerator()
         currentEvent = theEvent
-        let theQuestions = theEvent.randomiseEvents()
-        firstEvent.text = theQuestions[0]
-        secondEvent.text = theQuestions[1]
-        thirdEvent.text = theQuestions[2]
-        fourthEvent.text = theQuestions[3]
+        
+         var temp = ""
+         var theEvents: [String] = [theEvent.first, theEvent.second, theEvent.third, theEvent.fourth]
+         let index =  GKRandomSource.sharedRandom().nextInt(upperBound: 4)
+         for I in 0...index {
+         temp = theEvents[I]
+         theEvents[I] = theEvents[I+1]
+         theEvents[I+1] = temp
+         }
+        
+        firstEvent.text = theEvents[0]
+        secondEvent.text = theEvents[1]
+        thirdEvent.text = theEvents[2]
+        fourthEvent.text = theEvents[3]
         runTimer()
     }
     
@@ -111,24 +121,27 @@ class PlayViewController: UIViewController {
     }
     @objc func updateTimer() {
         gameManager.questionsAnswered += 1
-        while seconds >= 0 {
-            timerLabel.text = "\(seconds)" //This will update the label.
+        timerLabel.text = "\(seconds)" //This will update the label.
             if seconds == 0 {
                 guard let currentQs = currentEvent else {return}
                 do {
                     let checkAnswer = try gameManager.checkFor(theEvent: currentQs, first: firstEvent.text!, second: secondEvent.text!, third: thirdEvent.text!, fourth: fourthEvent.text!)
                     if checkAnswer {
                         // FIXME: Labels
+                        timer.invalidate()
+                        seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
+                        timerLabel.text = "\(seconds)"
                         loadNextRound(delay: 2)
                     } else {
+                        timer.invalidate()
+                        seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
+                        timerLabel.text = "\(seconds)"
                         loadNextRound(delay: 2)
                     }
                 }
                 catch {}
-             seconds -= 1     //This will decrement(count down)the seconds.
-
             }
-        }
+        seconds -= 1     //This will decrement(count down)the seconds.
     }
     
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {

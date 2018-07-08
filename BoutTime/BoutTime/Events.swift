@@ -15,19 +15,7 @@ struct Event {
     var second: String
     var third: String
     var fourth: String
-    
-    func randomiseEvents() -> [String] {
-        var temp = ""
-        var theEvents: [String] = [self.first, self.second, self.third, self.fourth]
-        let index =  GKRandomSource.sharedRandom().nextInt(upperBound: 4)
-        for I in 0...index {
-            temp = theEvents[I]
-            theEvents[I] = theEvents[I+1]
-            theEvents[I+1] = temp
-        }
-        return theEvents
     }
-}
 
 var event1: Event = Event(first: "This is the first event occured #1", second: "This is the second event occured", third: "This is the third event occured #3", fourth: "This is the fourth event occured #4")
 var event2: Event = Event(first: "This is the first event occured #1", second: "This is the second event occured", third: "This is the third event occured #3", fourth: "This is the fourth event occured #4")
