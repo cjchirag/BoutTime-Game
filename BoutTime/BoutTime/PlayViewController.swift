@@ -134,9 +134,9 @@ class PlayViewController: UIViewController {
         
         if gameManager.score < gameManager.quizRound {
             // FIXME: display for score load.
-            scoreLabel.text = "You got \(gameManager.score) out of \(gameManager.quizRound) correct!"
+            scoreLabel.text = "You got \(gameManager.score) out of 6 correct!"
         } else {
-            scoreLabel.text = "You scored \(gameManager.score) out of \(gameManager.quizRound)!"
+            scoreLabel.text = "You scored \(gameManager.score) out of 6!"
         }
     }
     func nextRound() {
