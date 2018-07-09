@@ -20,21 +20,43 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var thirdEvent: UILabel!
     @IBOutlet weak var fourthEvent: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var scoreInfo: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var playAgainButton: UIButton!
     
+    @IBOutlet weak var oneToTwo: UIButton!
+    @IBOutlet weak var twoToOne: UIButton!
+    @IBOutlet weak var twoToThree: UIButton!
+    @IBOutlet weak var threeToTwo: UIButton!
+    @IBOutlet weak var threeToFour: UIButton!
+    @IBOutlet weak var fourToThree: UIButton!
     
     override func viewDidLoad() {
         self.becomeFirstResponder()
         loadQuestion()
-        firstEvent.backgroundColor = UIColor(named: "white")
-        view.backgroundColor = UIColor(red: 0, green: 0, blue: 200, alpha: 1)
+        view.backgroundColor = UIColor(red: 17/255, green: 153/255, blue: 153/255, alpha: 1)
+        timerLabel.textColor = UIColor.white
+        infoLabel.textColor = UIColor.white
     }
     
     func loadQuestion() {
-        
+        scoreLabel.isHidden = true
+        scoreInfo.isHidden = true
+        playAgainButton.isHidden = true
         infoImage.isHidden = true
         infoLabel.isHidden = false
         infoLabel.text = "Shake to complete"
         timerLabel.isHidden = false
+        oneToTwo.isHidden = false
+        twoToOne.isHidden = false
+        twoToThree.isHidden = false
+        threeToTwo.isHidden = false
+        threeToFour.isHidden = false
+        fourToThree.isHidden = false
+        firstEvent.isHidden = false
+        secondEvent.isHidden = false
+        thirdEvent.isHidden = false
+        fourthEvent.isHidden = false
         let theEvent = gameManager.quiz.eventsGenerator()
         currentEvent = theEvent
         
@@ -98,15 +120,27 @@ class PlayViewController: UIViewController {
         secondEvent.isHidden = true
         thirdEvent.isHidden = true
         fourthEvent.isHidden = true
+        scoreInfo.isHidden = false
+        scoreLabel.isHidden = false
+        playAgainButton.isHidden = false
+        infoLabel.isHidden = true
+        infoImage.isHidden = true
+        oneToTwo.isHidden = true
+        twoToOne.isHidden = true
+        twoToThree.isHidden = true
+        threeToTwo.isHidden = true
+        threeToFour.isHidden = true
+        fourToThree.isHidden = true
         
         if gameManager.score < gameManager.quizRound {
             // FIXME: display for score load.
+            scoreLabel.text = "You got \(gameManager.score) out of \(gameManager.quizRound) correct!"
         } else {
-            
+            scoreLabel.text = "You scored \(gameManager.score) out of \(gameManager.quizRound)!"
         }
     }
     func nextRound() {
-        if gameManager.questionsAnswered == gameManager.quizRound {
+        if gameManager.questionsAnswered == gameManager.quizRound || gameManager.questionsAnswered == 6 {
             loadScore()
         } else {
             loadQuestion()
@@ -150,7 +184,7 @@ class PlayViewController: UIViewController {
                         timer.invalidate()
                         seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
                         infoLabel.text = "Tap events to learn more"
-                        loadNextRound(delay: 1)
+                        loadNextRound(delay: 2)
                     } else {
                         infoImage.isHidden = false
                         infoImage.image = UIImage(named: "next_round_fail")
@@ -159,13 +193,19 @@ class PlayViewController: UIViewController {
                         infoLabel.text = "Tap events to learn more"
                         seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
                         timerLabel.text = "\(seconds)"
-                        loadNextRound(delay: 1)
+                        loadNextRound(delay: 2)
                     }
                 
             }
         seconds -= 1     //This will decrement(count down)the seconds.
     }
     
+    @IBAction func playAgain(_ sender: Any) {
+        gameManager.questionsAnswered = 0
+        gameManager.score = 0
+        gameManager.quiz.askedIndices = []
+        nextRound()
+    }
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         gameManager.questionsAnswered += 1
         print("Device was shaken!")
@@ -192,7 +232,7 @@ class PlayViewController: UIViewController {
         timer.invalidate()
         seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
         timerLabel.text = "\(seconds)"
-        loadNextRound(delay: 1)
+        loadNextRound(delay: 2)
     }
 }
 
