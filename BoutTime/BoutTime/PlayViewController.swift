@@ -75,7 +75,7 @@ class PlayViewController: UIViewController {
         fourthEvent.text = theEvents[3]
         runTimer()
     }
-    
+    // Buttons to shift values.
     @IBAction func oneToTwo(_ sender: Any) {
         guard let temp = firstEvent.text else { return }
         firstEvent.text = secondEvent.text
@@ -170,6 +170,7 @@ class PlayViewController: UIViewController {
         timerLabel.text = "\(seconds)" //This will update the label.
             if seconds == 0 {
                 gameManager.questionsAnswered += 1
+                // safely unwrapping the values to check for the user input
                 guard let currentQs = currentEvent else {return}
                 guard let firstEvent = firstEvent.text else {return}
                 guard let secondEvent = secondEvent.text else {return}
@@ -177,11 +178,12 @@ class PlayViewController: UIViewController {
                 guard let fourthEvent = fourthEvent.text else {return}
                 
                     let checkAnswer =  gameManager.checkFor(theEvent: currentQs, first: firstEvent, second: secondEvent, third: thirdEvent, fourth: fourthEvent)
+                // responding to the input value of check answer
                     if checkAnswer {
                         infoImage.isHidden = false
                         infoImage.image = UIImage(named: "next_round_success")
                         timerLabel.isHidden = true
-                        timer.invalidate()
+                        timer.invalidate() // timer is reset
                         seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
                         infoLabel.text = "Tap events to learn more"
                         loadNextRound(delay: 2)
@@ -189,7 +191,7 @@ class PlayViewController: UIViewController {
                         infoImage.isHidden = false
                         infoImage.image = UIImage(named: "next_round_fail")
                         timerLabel.isHidden = true
-                        timer.invalidate()
+                        timer.invalidate() // timer is reset
                         infoLabel.text = "Tap events to learn more"
                         seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
                         timerLabel.text = "\(seconds)"
@@ -199,16 +201,18 @@ class PlayViewController: UIViewController {
             }
         seconds -= 1     //This will decrement(count down)the seconds.
     }
-    
+    // play again is called when the play again button is pressed
     @IBAction func playAgain(_ sender: Any) {
         gameManager.questionsAnswered = 0
         gameManager.score = 0
         gameManager.quiz.askedIndices = []
         nextRound()
     }
+    // Function is called when the iPhone is shaken
     override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
         gameManager.questionsAnswered += 1
         print("Device was shaken!")
+        // safely unwrapping the values for the function check for
         guard let currentQs = currentEvent else {return}
         guard let firstEvent = firstEvent.text else {return}
         guard let secondEvent = secondEvent.text else {return}
@@ -216,7 +220,8 @@ class PlayViewController: UIViewController {
         guard let fourthEvent = fourthEvent.text else {return}
        
         let checkAnswer = gameManager.checkFor(theEvent: currentQs, first: firstEvent, second: secondEvent, third: thirdEvent, fourth: fourthEvent)
-            if checkAnswer {
+        // responding to the values input by the user
+        if checkAnswer {
                 // FIXME: check answer labels
                 infoImage.isHidden = false
                 infoImage.image = UIImage(named: "next_round_success")
@@ -228,11 +233,11 @@ class PlayViewController: UIViewController {
                 timerLabel.isHidden = true
                 infoLabel.text = "Tap events to know more"
             }
-        
+        // timer is reset
         timer.invalidate()
         seconds = 60    //Here we manually enter the restarting point for the seconds, but it would be wiser to make this a variable or constant.
         timerLabel.text = "\(seconds)"
-        loadNextRound(delay: 2)
+        loadNextRound(delay: 2) // next round of questions are loaded
     }
 }
 

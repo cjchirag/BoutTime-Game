@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import GameKit
-
+// A struct to create objects for events
 struct Event {
     var first: String
     var second: String
@@ -23,7 +23,7 @@ var event3: Event = Event(first: "Personal computer invented by Xerox PARC", sec
 var event4: Event = Event(first: "Lord Mountbatten resigned as the Governor General of India", second: "India becomes a republic", third: "The Battle of Garibpur: Indian troops defeated Pakistan army", fourth: "India became 6th nation to explode an atomic bomb")
 var event5: Event = Event(first: "Delhi court decriminalizes gay sex", second: "India wins cricket world cup after 28 years", third: "India becomes a member of Missile Technology Control Regime.", fourth: "The Goods and Services Tax (GST) launched, the biggest tax reform in history of India.")
 var event6: Event = Event(first: "Christopher Latham Sholes invents the modern typewriter and QWERTY keyboard", second: "Thomas Edison invents his sound-recording machine or phonograph—a forerunner of the record player and CD player", third: "Thomas Edison patents the modern incandescent electric lamp", fourth: "Thomas Edison opens the world's first power plants")
-var event7: Event = Event(first: "1", second: "2", third: "3", fourth: "4")
+var event7: Event = Event(first: "iPhone 6", second: "iPhone 6s", third: "iPhone 7", fourth: "iPhone 8")
 
 
 
@@ -37,7 +37,7 @@ class Quiz {
     var arrayOfEvents: [String] = []
     
     var askedIndices: [Int] = []
-    
+    // randomising questions in the allQuestions array
     func eventsGenerator() -> Event {
         let index =  GKRandomSource.sharedRandom().nextInt(upperBound: allQuestions.count)
             if !(self.askedIndices.contains(index)) {
@@ -47,10 +47,6 @@ class Quiz {
                 return self.eventsGenerator()
             }
     }
-}
-
-enum ErrorsInAnswers: String, Error {
-    case IncorrectOrderOfEvents
 }
 
 var selectedQuiz = Quiz()
