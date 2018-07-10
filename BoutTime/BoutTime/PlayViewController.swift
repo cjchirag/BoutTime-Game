@@ -59,16 +59,7 @@ class PlayViewController: UIViewController {
         fourthEvent.isHidden = false
         let theEvent = gameManager.quiz.eventsGenerator()
         currentEvent = theEvent
-        
-         var temp = ""
-         var theEvents: [String] = [theEvent.first, theEvent.second, theEvent.third, theEvent.fourth]
-         let index =  GKRandomSource.sharedRandom().nextInt(upperBound: 3)
-         for I in 0...index {
-         temp = theEvents[I]
-         theEvents[I] = theEvents[I+1]
-         theEvents[I+1] = temp
-         }
-        
+        var theEvents = gameManager.randomEventsInRound(for: theEvent)
         firstEvent.text = theEvents[0]
         secondEvent.text = theEvents[1]
         thirdEvent.text = theEvents[2]
@@ -133,7 +124,7 @@ class PlayViewController: UIViewController {
         fourToThree.isHidden = true
         
         if gameManager.score < gameManager.quizRound {
-            // FIXME: display for score load.
+            // display for score load.
             scoreLabel.text = "You got \(gameManager.score) out of 6 correct!"
         } else {
             scoreLabel.text = "You scored \(gameManager.score) out of 6!"
